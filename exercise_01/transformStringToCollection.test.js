@@ -1,33 +1,31 @@
-import onError from "./callbacks/onError";
-import onSuccess from "./callbacks/onSuccess";
-import transformStringToArray from "./transformStringToCollection";
+import handleError from "./callbacks/onError";
+import handleSuccess from "./callbacks/onSuccess";
+import convertStringToArray from "./transformStringToCollection";
 
-describe("transformStringToArray function", () => {
-  describe("when called with a non-empty string", () => {
-    test("should return a non-empty array", () => {
+describe("Function convertStringToArray", () => {
+  describe("When called with a non-empty string", () => {
+    test("Should return a non-empty array", () => {
       // Arrange
-      const value = "Hello World";
+      const input = "Hello World";
 
       // Act
-      const result = transformStringToArray(value, onError, onSuccess);
+      const result = convertStringToArray(input, handleError, handleSuccess);
 
       // Assert
-      expect(result).toBeInstanceOf(Array);
-      expect(result).toHaveLengthGreaterThan(0);
+      expect(result.length).toBeGreaterThan(0);
     });
   });
 
-  describe("when called with a non-string or empty value", () => {
-    test("should return an empty array", () => {
+  describe("When called with a non-string or empty value", () => {
+    test("Should return an empty array", () => {
       // Arrange
-      const value = "";
+      const input = "";
 
       // Act
-      const result = transformStringToArray(value, onError, onSuccess);
+      const result = convertStringToArray(input, handleError, handleSuccess);
 
       // Assert
-      expect(result).toBeInstanceOf(Array);
-      expect(result).toHaveLength(0);
+      expect(result.length).toBe(0);
     });
   });
 });
