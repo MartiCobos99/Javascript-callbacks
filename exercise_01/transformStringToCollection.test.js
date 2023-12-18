@@ -1,6 +1,7 @@
-import handleError from "./callbacks/onError";
-import handleSuccess from "./callbacks/onSuccess";
-import convertStringToArray from "./transformStringToCollection";
+import handleError from "./callbacks/onError.js";
+import handleSuccess from "./callbacks/onSuccess.js";
+import convertStringToArray from "./transformStringToCollection.js";
+import validateString from "../helpers/validateString.js";
 
 describe("Function convertStringToArray", () => {
   describe("When called with a non-empty string", () => {
@@ -27,5 +28,18 @@ describe("Function convertStringToArray", () => {
       // Assert
       expect(result.length).toBe(0);
     });
+  });
+});
+
+describe("When the function validateString is called with a value of type string", () => {
+  test("Then a boolean should be returned.", () => {
+    // Arrange
+    const value = "Hello, my name is Martí";
+
+    // Act
+    const result = validateString(value);
+
+    // Assert
+    expect(result).toEqual(true);
   });
 });
